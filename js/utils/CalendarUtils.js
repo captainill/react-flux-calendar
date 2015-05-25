@@ -6,6 +6,10 @@ const _daysInWeek = 7;
 
 const CalendarUtils = {
 
+  isToday(date){
+    return date.toDateString() == new Date().toDateString();
+  },
+
   //getter for day string names
   getDayNames(){
     return _daysName;

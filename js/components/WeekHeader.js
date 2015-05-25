@@ -7,7 +7,7 @@ export default class WeekHeader extends React.Component{
 		const dayNames = CalendarUtils.getDayNames();
 		return (
 			this.props.days.map(function(day, i){
-				const active = (day.toDateString() == new Date().toDateString()) ? ' active' : '';
+				const active = (CalendarUtils.isToday(day)) ? ' active' : '';
 				const dayShort = dayNames[i].slice(0,3);
 				return (
 					<div className={"col-header" + active} key={i}>
