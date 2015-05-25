@@ -7,5 +7,6 @@ export default keyMirror({
   HIDE_EVENT_POPUP: null,
   EDIT_EVENT: null,
   SAVE_EVENT: null,
+  DELETE_EVENT: null,
   RECIEVE_EVENTS: null
 })

@@ -41,6 +41,17 @@ export function saveEventPopup(payload){
 	});
 }
 
+export function deleteEventPopup(payload){
+	//save locally
+	AppDispatcher.dispatch(AppConstants.DELETE_EVENT, {
+		payload: payload.id
+	});
+
+	APIUtils.deleteEvent(payload.id).then(() => {
+		return true;
+	});	
+}
+
 export function closePopup(payload){
 	AppDispatcher.dispatch(AppConstants.HIDE_EVENT_POPUP, payload);
 }

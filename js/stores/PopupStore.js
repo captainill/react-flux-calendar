@@ -54,16 +54,13 @@ AppDispatcher.register(action => {
       _position = action.payload.position;
       PopupStore.emitChange();
     break;
-
+    
+    case AppConstants.DELETE_EVENT:
+    case AppConstants.SAVE_EVENT:
     case AppConstants.HIDE_EVENT_POPUP:
       _resestPopup();
       PopupStore.emitChange();
-    break;   
-
-    case AppConstants.SAVE_EVENT:
-      _resestPopup()
-      PopupStore.emitChange();
-    break;   
+    break;
 
     default:
       // do nothing

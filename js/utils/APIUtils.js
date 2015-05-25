@@ -19,3 +19,17 @@ export function createEvent(payload){
     resolve();
   })
 }
+
+export function deleteEvent(id){
+  return new Promise(function(resolve, reject){
+
+		let events = JSON.parse(localStorage.getItem('events')) || [];
+		events = events.filter((event) => {
+			return event.id != id;
+		})
+	  localStorage.setItem('events',  JSON.stringify(events))
+      
+    resolve();
+  })
+}
+

@@ -48,6 +48,11 @@ AppDispatcher.register(action => {
       EventStore.emitChange()
     break;
 
+    case AppConstants.DELETE_EVENT:
+      delete _events[action.payload];
+      EventStore.emitChange()
+    break;
+
     case AppConstants.RECIEVE_EVENTS:
       _addAllEvents(action.payload);
       EventStore.emitChange()
