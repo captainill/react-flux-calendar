@@ -88,6 +88,17 @@ const CalendarUtils = {
   //Could just use new Date.toDateString() and String.replace spaces
   generateSerialForDate(date){
     return date.getFullYear().toString() + date.getMonth().toString() + date.getDate().toString();
+  },
+
+  /*
+    Accepts height of HTML el and an hour and minute integer.
+    Returns time position, to the minute, relative to Height
+  */
+  getCurrentMinutePositionFromElementHeight(height, hour, minutes){
+    const hourHeight = height;
+    const cellHeight = hourHeight /  (24 * 60);
+    const totalMinutes = (hour * 60) + minutes;  
+    return totalMinutes * cellHeight
   }
   
   //const firstDay = this.getFirstDay(_date.getMonth(), _date.getFullYear());

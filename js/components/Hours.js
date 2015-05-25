@@ -2,6 +2,7 @@ import React from 'react';
 import * as TimerUtils from '../utils/TimerUtils';
 import connectToStores from '../utils/connectToStores';
 import CurrentTimeStore from '../stores/CurrentTimeStore';
+import CalendarUtils from '../utils/CalendarUtils';
 
 /**
  * Retrieves state from stores for current props.
@@ -46,12 +47,8 @@ export default class Hours extends React.Component{
 	}
 
   render() {
-  	const hourHeight = this.state.hourHeight;
-  	const cellHeight = hourHeight /  (24 * 60);
-  	const totalMinutes = (this.props.hour * 60) + this.props.minutes;
-
-  	const caretPosition ={
-  		top:  totalMinutes * cellHeight
+  	const caretPosition = {
+  		top:  CalendarUtils.getCurrentMinutePositionFromElementHeight(this.state.hourHeight, this.props.hour, this.props.minutes)
   	}
     return (
       <div className="hours">

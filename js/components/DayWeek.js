@@ -2,27 +2,39 @@ import React from 'react';
 import HourCell from './HourCell';
 import * as CalendarActionCreators from '../actions/CalendarActionCreators';
 import EventStore from '../stores/EventStore';
+import CurrentTimeStore from '../stores/CurrentTimeStore';
 import connectToStores from '../utils/connectToStores';
 import CalendarUtils from '../utils/CalendarUtils';
 
 function getState(props) {
   const serialDateNum = CalendarUtils.generateSerialForDate(props.date);
   const events = EventStore.getEventsForSerialDate(serialDateNum);
+  const hour = CurrentTimeStore.getHour();
+  const minutes= CurrentTimeStore.getMinute();  
 
   return {
-    events
+    events,
+    hour,
+    minutes
   }
 }
 
-const stores = [EventStore];
+const stores = [EventStore, CurrentTimeStore];
 @connectToStores(stores, getState)
 export default class DayWeek extends React.Component{
 	
 	constructor(){
 		super();
-
+    
+    this.state = {hourHeight: 0};
 		this.addEvent = this.addEvent.bind(this);
 	}
+
+  componentDidMount(){
+    this.setState({
+      hourHeight: React.findDOMNode(this).clientHeight
+    })
+  }  
 
 	renderHours(){
 		let cells = [];
@@ -35,13 +47,27 @@ export default class DayWeek extends React.Component{
       })
 			cells.push(<HourCell hour={i} event={hourEvent} addEvent={this.addEvent} />);
 		}
-		return cells;
+		return <div>{cells}</div>;
 	}
 
   render() {
-    const active = (CalendarUtils.isToday(this.props.date)) ? ' active' : '';
+    const isToday = CalendarUtils.isToday(this.props.date);
+    const active = (isToday) ? ' active' : '';
+
+    let activeBarPosition = {};
+
+    if(isToday){
+      activeBarPosition = {
+        top: CalendarUtils.getCurrentMinutePositionFromElementHeight(this.state.hourHeight, this.props.hour, this.props.minutes)
+      }
+    }
+
     return (
       <div className={"day week" + active}>
+          {isToday ?
+              <span className="active-time-bar" style={activeBarPosition}></span>
+            : null
+          }
       	{this.renderHours()}
       </div>
     );
