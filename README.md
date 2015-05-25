@@ -14,6 +14,7 @@ To build the project, first run this command:
 `webpack -w`
 
 To run the server:
+
 `node server.js'
 
 And navigate to http://localhost:3000
