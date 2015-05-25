@@ -1,7 +1,9 @@
 import React from "react/addons";
 import { RouteHandler } from 'react-router';
-import Popup from './Popup';
+import PopupCreate from './PopupCreate';
+import PopupEdit from './PopupEdit';
 import PopupStore from '../stores/PopupStore';
+import EventStore from '../stores/EventStore';
 import connectToStores from '../utils/connectToStores';
 
 /**
@@ -10,12 +12,18 @@ import connectToStores from '../utils/connectToStores';
 function getState(props) {
   const isPopupShowing = PopupStore.isPopupShowing();
   const position = PopupStore.getPosition();
-  const popupEvent = PopupStore.getEvent();
+  let popupEvent = PopupStore.getEvent();
+  const popUpMode = popupEvent.mode;
+
+  if(popupEvent.mode == 'edit'){
+    popupEvent = EventStore.get(popupEvent.id);
+  }
 
   return {
     position,
     isPopupShowing,
-    popupEvent
+    popupEvent,
+    popUpMode
   }
 }
 
@@ -24,16 +32,12 @@ const stores = [PopupStore];
 
 export default class App extends React.Component{
 
-  static contextTypes = {
-    router: React.PropTypes.func
-  }
-
   render() {
-  	var name = this.context.router.getCurrentPath();
+    const Popup = (this.props.popUpMode == 'create') ? PopupCreate : PopupEdit;
     return (
       <div className="app-wrap">
         <Popup {...this.props} />
-        <RouteHandler key={name} />
+        <RouteHandler />
       </div>
     );
   }

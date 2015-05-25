@@ -10,7 +10,7 @@ export default class HourCell extends React.Component{
 
 	handleClick(e){
 		const _this = this;
-		this.props.addEvent(e.nativeEvent, this.props.hour, React.findDOMNode(_this).offsetTop);
+		this.props.addEvent(e.nativeEvent, this.props.hour, React.findDOMNode(_this).offsetTop, this.props.event);
 	}
 
   render() {

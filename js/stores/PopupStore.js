@@ -11,7 +11,9 @@ let _position = {
   left: 0
 };
 let _isPopupShowing = false;
-let _event = null;
+let _event = {
+  mode: 'create'
+};
 
 function _resestPopup(){
   _isPopupShowing = false;
@@ -45,8 +47,9 @@ AppDispatcher.register(action => {
         when: when,
         date: action.payload.date,
         hour: action.payload.hour,
-        isSaved: false
-      }    
+        mode: action.payload.mode,
+        event: action.payload.event
+      }
       _isPopupShowing = true;
       _position = action.payload.position;
       PopupStore.emitChange();

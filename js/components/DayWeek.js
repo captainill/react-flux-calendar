@@ -47,10 +47,11 @@ export default class DayWeek extends React.Component{
     );
   }
 
-  addEvent(event, hour, off){
+  addEvent(e, hour, off, event){
   	//Can use LayerY to determine half hour or full hour
     const top = window.innerHeight - off - 54; //54 is a hack (can be replaced with function) for the parent offsets that need to be substracted
-  	const left = event.pageX - event.layerX - 20; //20 is just a shift like Gc
+  	const left = e.pageX - e.layerX - 20; //20 is just a shift like Gc
+    const mode = (event) ? 'edit' : 'create';
 
   	CalendarActionCreators.showEventPopup({
       payload: {
@@ -60,7 +61,9 @@ export default class DayWeek extends React.Component{
         },
         hour: hour,
         date: this.props.date,
-        id: 'e_' + Date.now()
+        id: (event) ? event.id : 'e_' + Date.now(),
+        mode: mode,
+        event: event
       }
   	});
   }
