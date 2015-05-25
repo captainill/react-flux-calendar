@@ -16,19 +16,17 @@ const CurrentTimeStore = createStore({
 
   getMinute(){
     return _currentMinute;
-  },  
+  },
   
   //internal time checker to keep hour and date updated
   startTimer(){
     const now = new Date();
+    
+    _now = now; 
+    _currentHour = _now.getHours();
+    _currentMinute = _now.getMinutes();
 
-    if(_now.getHours != now.getHours()){
-      _now = now; 
-      _currentHour = _now.getHours();
-      _currentMinute = _now.getMinutes();
-
-      CurrentTimeStore.emitChange();
-    }
+    CurrentTimeStore.emitChange();
   },
 
   killTimer(){
