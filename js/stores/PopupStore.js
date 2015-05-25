@@ -37,7 +37,7 @@ AppDispatcher.register(action => {
   //Let the EventStore set the current event before rendering the popup @ current position
   switch(action.type) {
     case AppConstants.SHOW_EVENT_POPUP:
-      const when = CalendarUtils.convertDateToWhen(action.payload.date) + ',' + TimerUtils.convertHourToTime(action.payload.hour);
+      const when = CalendarUtils.convertDateToWhen(action.payload.date) + ', ' + TimerUtils.convertHourToTime(action.payload.hour);
       const id = action.payload.id;
       _event = {
         id: id,
