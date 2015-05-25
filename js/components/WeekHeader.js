@@ -5,12 +5,12 @@ export default class WeekHeader extends React.Component{
 
 	renderHeader(){
 		const dayNames = CalendarUtils.getDayNames();
-
 		return (
 			this.props.days.map(function(day, i){
+				const active = (day.toDateString() == new Date().toDateString()) ? ' active' : '';
 				const dayShort = dayNames[i].slice(0,3);
 				return (
-					<div className="col-header" key={i}>
+					<div className={"col-header" + active} key={i}>
 						<div className="col-head-label">{dayShort + ' ' +(day.getMonth() +1) + '/' + day.getDate()}</div>
 						<div className="col-header-eventspace"></div>
 					</div>

@@ -39,8 +39,9 @@ export default class DayWeek extends React.Component{
 	}
 
   render() {
+    const active = (this.props.date.toDateString() == new Date().toDateString()) ? ' active' : '';
     return (
-      <div className="day week">
+      <div className={"day week" + active}>
       	{this.renderHours()}
       </div>
     );
