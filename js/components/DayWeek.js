@@ -49,7 +49,7 @@ export default class DayWeek extends React.Component{
 
   addEvent(e, hour, off, event){
   	//Can use LayerY to determine half hour or full hour
-    const top = window.innerHeight - off - 54; //54 is a hack (can be replaced with function) for the parent offsets that need to be substracted
+    const top = window.innerHeight - off - 84; //84 is a hack (can be replaced with function) for the parent offsets that need to be substracted
   	const left = e.pageX - e.layerX - 20; //20 is just a shift like Gc
     const mode = (event) ? 'edit' : 'create';
 

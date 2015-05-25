@@ -2,6 +2,7 @@
   margin: 0 40px 0 250px;
 
   .calendar-nav{
+    height: 24px;
     ul{
       list-style-type: none;
       padding-left: 0;
@@ -69,6 +70,7 @@
             height: 24px;
             line-height: 24px;
             text-align: center;
+            border-top: 1px solid transparent;
 
             &.active{
               border-top: 1px solid $light-gray;
