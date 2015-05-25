@@ -44,6 +44,10 @@ AppDispatcher.register(action => {
     break;
 
     case AppConstants.HIDE_EVENT_POPUP:
+      //clean up unused saved data
+      if(_eventID && !EventStore.get(_eventID).isSaved){
+        EventStore.remove(_eventID);
+      }
       _resestPopup();
       PopupStore.emitChange();
     break;   

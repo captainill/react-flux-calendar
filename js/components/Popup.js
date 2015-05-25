@@ -11,9 +11,6 @@ export default class Popup extends React.Component{
 		this.onClosetHanlder = this.onClosetHanlder.bind(this);
 		this.onClickSaveHanlder = this.onClickSaveHanlder.bind(this);
 	}
-	/*shouldComponentUpdate(nextProps){
-  	return nextProps.position !== null;
-	}*/
 
   render() {
   	const style = {
