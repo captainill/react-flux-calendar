@@ -11,9 +11,6 @@ let _currentHour = _now.getHours();
 let _view = 'week';
 let _isPopupShowing = false;
 
-let _tickInterval = -1;
-let _intervalTime = 6000;
-
 const CalendarStore = createStore({
 
   isPopupShowing(){
@@ -42,19 +39,6 @@ const CalendarStore = createStore({
   //params: Date instance
   isCurrentCalendarDate(dateToCheck){
     _today.toDateString() === dateToCheck.toDateString()
-  },
-
-  //internal time checker to keep hour and date updated
-  dateTick(){
-    const now = new Date();
-
-    if(_now.getHours != now.getHours()){
-      _now = now; 
-      _currentDate = _now.getDate();
-      _currentHour = _now.getHours();
-
-      CalendarStore.emitChange();
-    }
   }
 
 });
@@ -71,15 +55,7 @@ CalendarStore.dispatchToken = AppDispatcher.register(action => {
     case AppConstants.NEXT_WEEK:
         _currentWeekStart = new Date(_currentWeekStart.setDate(_currentWeekStart.getDate()+7));
         CalendarStore.emitChange();
-    break;    
-
-    case AppConstants.START_DATE_TICK:
-      _tickInterval = setInterval(CalendarStore.dateTick, _intervalTime);
     break;
-
-    case AppConstants.STOP_DATE_TICK:
-      removeInterval(_tickInterval);
-    break; 
 
     default:
       // do nothing

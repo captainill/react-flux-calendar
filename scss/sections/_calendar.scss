@@ -143,6 +143,16 @@
     left: -$hour-cell-width;
     width: $hour-cell-width;
 
+    .timer-caret{
+      position: absolute;
+      width: 0; 
+      height: 0;
+      margin-top: -4px;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 4px solid #C9393A;
+    }    
+
     .hour-label{
       padding: 2px;
       height: $hour-cell-height;
