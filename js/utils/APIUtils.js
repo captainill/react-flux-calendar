@@ -9,6 +9,21 @@ export function getAllEvents(){
 
 }
 
+export function updateEvent(payload){
+  return new Promise(function(resolve, reject){
+
+		var events = JSON.parse(localStorage.getItem('events')) || [];
+		events.forEach((event) => {
+			if(event.id == payload.id){
+				event = payload.event;
+			}
+		})
+	  localStorage.setItem('events',  JSON.stringify(events))
+      
+    resolve();
+  })
+}
+
 export function createEvent(payload){
   return new Promise(function(resolve, reject){
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 import * as CalendarActionCreators from '../actions/CalendarActionCreators';
+import RouterContainer from '../utils/RouterContainer';
 
 export default class Popup extends React.Component{
 
@@ -51,14 +52,12 @@ export default class Popup extends React.Component{
   }
 
   onClickSaveHanlder(e){
-  	const { router } = this.context;
-
   	let details = this.getDetails();
 
   	CalendarActionCreators.saveEventPopup({
       id: this.props.popupEvent.id,
       details: details,
-      router: this.context.router
+      router: RouterContainer.get()
   	})
 
   	e.preventDefault();
@@ -75,9 +74,4 @@ export default class Popup extends React.Component{
   	e.preventDefault();
   }
 
-};
-
-
-Popup.contextTypes = {
-  router: React.PropTypes.func
 };

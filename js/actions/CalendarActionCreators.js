@@ -7,6 +7,9 @@ import * as APIUtils from '../utils/APIUtils';
 import CalendarUtils from '../utils/CalendarUtils';
 
 
+/*
+	Calendar Page Actions
+*/
 export function startCalendar() {
   AppDispatcher.dispatch(AppConstants.START_DATE_TICK);
 }
@@ -16,7 +19,6 @@ export function showEventPopup(payload) {
 }
 
 export function editEventPopup(payload){
-	console.log('editEvent', payload);
 	AppDispatcher.dispatch(AppConstants.SAVE_EVENT, payload);
 }
 
@@ -24,6 +26,24 @@ export function addAllEvents(events){
 	AppDispatcher.dispatch(AppConstants.RECIEVE_EVENTS, events);
 }
 
+/*
+	Event Page Actions
+*/
+export function saveEvent(payload){
+	//save locally
+	AppDispatcher.dispatch(AppConstants.SAVE_EVENT, {
+		payload: payload.event
+	});
+
+	//persist to 'DB'
+	APIUtils.updateEvent(payload.event).then(() => {
+		return payload.router.transitionTo('calendar');
+	});
+}
+
+/*
+	Popup Actions
+*/
 export function saveEventPopup(payload){
 	let event = PopupStore.getEvent();
 	event.isSaved = true;

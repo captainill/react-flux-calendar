@@ -20,7 +20,6 @@ export default class Week extends React.Component{
 	}
 
   render() {
-
     return (
     	<div className="calendar-body week">
     		<WeekHeader days={this.props.view.days} />

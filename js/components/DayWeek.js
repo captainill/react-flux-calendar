@@ -69,3 +69,4 @@ export default class DayWeek extends React.Component{
   }
 
 };
+
