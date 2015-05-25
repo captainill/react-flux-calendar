@@ -27,9 +27,9 @@ export default class Popup extends React.Component{
     React.findDOMNode(this.refs.popClose).removeEventListener('click', this.onClosetHandler);
   } 
 
-  shouldComponentUpdate(nextProps){
+  /*shouldComponentUpdate(nextProps){
     return nextProps.isPopupShowing != this.props.isPopupShowing;
-  }
+  }*/
 
   render() {
   	const style = {

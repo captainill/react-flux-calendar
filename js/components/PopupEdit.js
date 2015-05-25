@@ -5,6 +5,9 @@ import RouterContainer from '../utils/RouterContainer';
 
 export default class PopupEdit extends Popup{
 
+  //ran into this:
+  //https://github.com/facebook/react/issues/3790
+  //had to wrap ref="popEdit" in a <span>
   constructor(props){
     super(props);
   }
@@ -32,7 +35,9 @@ export default class PopupEdit extends Popup{
           <span clasName="pop-event-details">{ when }</span>
         </div>
         <div>
-          <input type="submit" value="Edit Event" ref="popEdit" />
+          <span>
+            <input type="submit" value="Edit Event" ref="popEdit" />
+          </span>
           <a href="#" className="pop-edit" ref="popDelete">Delete event »</a>
         </div>
       </form>
