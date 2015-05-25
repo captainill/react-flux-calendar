@@ -40,13 +40,8 @@ export default class Popup extends React.Component{
   }
 
   onClickEditHanlder(e){
-  	let details = this.getDetails();
-
-  	CalendarActionCreators.editEventPopup({
-    	id: this.props.popupEvent.id,
-      details: details,
-      isSaved: false
-  	});
+  	RouterContainer.get().transitionTo('event', {id: this.props.popupEvent.id})
+  	CalendarActionCreators.editEventPopup();
 
   	e.preventDefault();
   }

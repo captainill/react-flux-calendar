@@ -18,8 +18,8 @@ export function showEventPopup(payload) {
   AppDispatcher.dispatch(AppConstants.SHOW_EVENT_POPUP, payload);
 }
 
-export function editEventPopup(payload){
-	AppDispatcher.dispatch(AppConstants.SAVE_EVENT, payload);
+export function editEventPopup(){
+	AppDispatcher.dispatch(AppConstants.HIDE_EVENT_POPUP);
 }
 
 export function addAllEvents(events){
