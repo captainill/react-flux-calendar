@@ -2,6 +2,7 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import AppConstants from '../constants/AppConstants';
 import CalendarStore from '../stores/CalendarStore';
 import EventStore from '../stores/EventStore';
+import PopupStore from '../stores/PopupStore';
 import * as APIUtils from '../utils/APIUtils';
 import CalendarUtils from '../utils/CalendarUtils';
 
@@ -24,7 +25,7 @@ export function addAllEvents(events){
 }
 
 export function saveEventPopup(payload){
-	let event = EventStore.get(payload.id);
+	let event = PopupStore.getEvent();
 	event.isSaved = true;
 	event.details = payload.details;
 	event.serialDate = CalendarUtils.generateSerialForDate(event.date);

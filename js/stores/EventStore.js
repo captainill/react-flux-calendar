@@ -40,30 +40,11 @@ const EventStore = createStore({
 
 });
 
-EventStore.dispatchToken = AppDispatcher.register(action => {
+AppDispatcher.register(action => {
 
   switch(action.type) {
-    case AppConstants.SHOW_EVENT_POPUP:
-      const when = CalendarUtils.convertDateToWhen(action.payload.date) + ',' + TimerUtils.convertHourToTime(action.payload.hour);
-      const id = action.payload.id;
-      _events[id] = {
-        id: id,
-        when: when,
-        date: action.payload.date,
-        hour: action.payload.hour
-      }
-      EventStore.emitChange();
-    break;
-
-    case AppConstants.HIDE_EVENT_POPUP:
-      if(action.payload.remove){
-        EventStore.remove(action.payload.id);
-      }    
-      EventStore.emitChange()
-    break;
-
     case AppConstants.SAVE_EVENT:
-      _events[action.payload.id] = action.payload
+      _events[action.payload.id] = action.payload;
       EventStore.emitChange()
     break;
 

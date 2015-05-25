@@ -38,9 +38,9 @@ export default class DayWeek extends React.Component{
 		return cells;
 	}
 
-  /*shouldComponentUpdate(nextProps){
-    return nextProps.date.getHours() != this.props.date.getHours();
-  }*/
+  shouldComponentUpdate(nextProps){
+    return nextProps.events != this.props.events;
+  }
 
   render() {
     return (

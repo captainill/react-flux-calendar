@@ -1,6 +1,8 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import EventStore from './EventStore';
 import { createStore, mergeIntoBag, isInBag } from '../utils/StoreUtils';
+import CalendarUtils from '../utils/CalendarUtils';
+import * as TimerUtils from '../utils/TimerUtils';
 //import selectn from 'selectn';
 import AppConstants from '../constants/AppConstants';
 
@@ -9,11 +11,11 @@ let _position = {
   left: 0
 };
 let _isPopupShowing = false;
-let _eventID = null;
+let _event = null;
 
 function _resestPopup(){
   _isPopupShowing = false;
-  _eventID = null;  
+  _event = null;  
 }
 
 const PopupStore = createStore({
@@ -27,7 +29,7 @@ const PopupStore = createStore({
   },
 
   getEvent(){
-    return EventStore.get(_eventID);
+    return _event;
   }
 
 });
@@ -36,18 +38,21 @@ AppDispatcher.register(action => {
   //Let the EventStore set the current event before rendering the popup @ current position
   switch(action.type) {
     case AppConstants.SHOW_EVENT_POPUP:
-      AppDispatcher.waitFor([EventStore.dispatchToken]);
+      const when = CalendarUtils.convertDateToWhen(action.payload.date) + ',' + TimerUtils.convertHourToTime(action.payload.hour);
+      const id = action.payload.id;
+      _event = {
+        id: id,
+        when: when,
+        date: action.payload.date,
+        hour: action.payload.hour,
+        isSaved: false
+      }    
       _isPopupShowing = true;
       _position = action.payload.position;
-      _eventID = action.payload.id;
       PopupStore.emitChange();
     break;
 
     case AppConstants.HIDE_EVENT_POPUP:
-      //clean up unused saved data
-      if(_eventID && !EventStore.get(_eventID).isSaved){
-        EventStore.remove(_eventID);
-      }
       _resestPopup();
       PopupStore.emitChange();
     break;   
