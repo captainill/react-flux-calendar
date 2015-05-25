@@ -77,6 +77,10 @@ const CalendarUtils = {
     const date = dateProp.getDate();
 
     return day + ', ' + month + ' ' + date;
+  },
+
+  generateSerialForDate(date){
+    return date.getFullYear().toString() + date.getMonth().toString() + date.getDate().toString();
   }
   
   //const firstDay = this.getFirstDay(_date.getMonth(), _date.getFullYear());

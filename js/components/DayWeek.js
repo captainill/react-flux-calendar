@@ -1,7 +1,23 @@
 import React from 'react';
 import HourCell from './HourCell';
 import * as CalendarActionCreators from '../actions/CalendarActionCreators';
+import EventStore from '../stores/EventStore';
+import connectToStores from '../utils/connectToStores';
+import CalendarUtils from '../utils/CalendarUtils';
 
+function getState(props) {
+  const serialDateNum = CalendarUtils.generateSerialForDate(props.date);
+  const events = EventStore.getEventsForSerialDate(serialDateNum);
+
+  console.log('events for serial', events);
+
+  return {
+    events
+  }
+}
+
+const stores = [EventStore];
+@connectToStores(stores, getState)
 export default class DayWeek extends React.Component{
 	
 	constructor(){
@@ -17,6 +33,10 @@ export default class DayWeek extends React.Component{
 		}
 		return cells;
 	}
+
+  /*shouldComponentUpdate(nextProps){
+    return nextProps.date.getHours() != this.props.date.getHours();
+  }*/
 
   render() {
     return (

@@ -4,6 +4,7 @@ import CalendarUtils from '../utils/CalendarUtils';
 import * as TimerUtils from '../utils/TimerUtils';
 //import selectn from 'selectn';
 import AppConstants from '../constants/AppConstants';
+import {filter} from 'lodash';
 
 let _events = {};
 
@@ -29,6 +30,12 @@ const EventStore = createStore({
 
   getCurrentEvent(){
     return _currentEvent;
+  },
+
+  getEventsForSerialDate(serialDate){
+    return filter(_events, (event) => {
+      return event.serialDate == serialDate;
+    })
   }
 
 });

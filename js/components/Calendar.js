@@ -10,14 +10,10 @@ import * as CalendarActionCreators from '../actions/CalendarActionCreators';
  * Retrieves state from stores for current props.
  */
 function getState(props) {
-  const dateObj = CalendarStore.getCurrentDateObj();
   const view = CalendarStore.getView();
-  const isPopupShowing = CalendarStore.isPopupShowing();
 
   return {
-    dateObj,
-    view,
-    isPopupShowing
+    view
   }
 }
 
@@ -34,7 +30,6 @@ export default class Calendar extends React.Component{
     return (
       <div className="calendar">
       	<RouteHandler 
-      		date={this.props.dateObj} 
       		view={this.props.view} />
       </div>
     );
