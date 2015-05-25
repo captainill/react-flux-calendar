@@ -1,0 +1,112 @@
+.calendar{
+  margin: 0 40px 0 250px;
+
+  .calendar-body{
+    height: 100%;
+    width: 100%;
+
+    &.week{
+      height: $calendar-body-height;
+
+      .week-columns{
+        position: relative;
+        height: 100%;
+        border-top: 1px solid $light-gray;
+        border-bottom: 1px solid $light-gray;        
+
+        .col{
+          display: inline-block;
+          height: 100%;
+          width: (100% / $days-week);
+          border-right: 1px solid $light-gray;
+        }        
+      }
+
+      .header-columns{
+        margin-bottom: 10px;
+
+        .col-header{
+          position: relative;
+          display: inline-block;
+          width: (100% / $days-week);
+
+          &:first-child{
+            .col-header-eventspace{
+              border-left: 1px solid $light-gray;
+            }            
+          }
+
+          .col-header-eventspace{
+            min-height: 10px;
+            border-top: 1px solid $light-gray;
+            border-right: 1px solid $light-gray;
+            border-bottom: 1px solid $light-gray;
+          }
+
+          .col-head-label{
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+
+            &.active{
+              border-top: 1px solid $light-gray;
+              border-left: 1px solid $light-gray;
+              border-right: 1px solid $light-gray;
+            }
+          }
+        }
+      }   
+    }
+  }
+
+  .day{
+    &.week{
+      height: 100%;
+
+      .hour{
+        position: relative;
+        height: $hour-cell-height;
+        border-bottom: 1px solid $light-gray;
+        top: -1px;
+
+        &:last-child{
+          border-bottom: none;
+        }
+        
+        hr{
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          top: 49%;
+          margin: 0;
+          border: none;
+          background-color: lighten($light-gray, 7%);
+        }
+      }
+    }
+  }
+
+  .hours{
+    position: absolute;
+    top: -1px;
+    left: -$hour-cell-width;
+    width: $hour-cell-width;
+
+    .hour-label{
+      padding: 2px;
+      height: $hour-cell-height;
+      border-right: 1px solid $light-gray;
+      border-bottom: 1px solid $light-gray;
+      border-left: 1px solid $light-gray;
+
+      &:first-child{
+        border-top: 1px solid $light-gray;
+      }
+
+      span{
+        float: right;
+      }
+    }
+  }
+}

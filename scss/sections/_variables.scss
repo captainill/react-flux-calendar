@@ -1,0 +1,9 @@
+//colors
+$light-gray: #ddd;
+
+//constants
+$days-week: 7;
+$hours-day: 24;
+$hour-cell-width: 60px;
+$hour-cell-height: 42px;
+$calendar-body-height: $hours-day * $hour-cell-height;
