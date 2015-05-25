@@ -31,9 +31,11 @@
           width: (100% / $days-week);
           &.active{
             background-color: #f1f1f1;
-            border-top: 1px solid $light-gray;
-            border-left: 1px solid $light-gray;
-            border-right: 1px solid $light-gray;            
+            .col-head-label{
+              border-top: 1px solid $light-gray;
+              border-left: 1px solid $light-gray;
+              border-right: 1px solid $light-gray;            
+            }
           }          
 
           &:first-child{
