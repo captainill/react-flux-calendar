@@ -1,6 +1,20 @@
 .calendar{
   margin: 0 40px 0 250px;
 
+  .calendar-nav{
+    ul{
+      list-style-type: none;
+      padding-left: 0;
+      li{
+        display: inline-block;
+
+        &:first-child{
+          margin-right: 10px
+        }
+      }
+    }
+  }
+
   .calendar-body{
     height: 100%;
     width: 100%;

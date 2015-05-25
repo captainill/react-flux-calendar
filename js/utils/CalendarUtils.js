@@ -75,6 +75,7 @@ const CalendarUtils = {
     return array;
   },
 
+  //Prettify the date for Display in Popup/Event
   convertDateToWhen(dateProp){
     const day = _daysName[dateProp.getDay()].slice(0,3);
     const month = _monthNames[dateProp.getMonth()];
@@ -83,6 +84,8 @@ const CalendarUtils = {
     return day + ', ' + month + ' ' + date;
   },
 
+  //Easy way to map an event to a day to make filtering easier later.
+  //Could just use new Date.toDateString() and String.replace spaces
   generateSerialForDate(date){
     return date.getFullYear().toString() + date.getMonth().toString() + date.getDate().toString();
   }

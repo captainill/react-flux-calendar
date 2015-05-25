@@ -9,7 +9,7 @@ var Event = require('./components/Event');
 module.exports = (
   <Route name="app" path="/" handler={App}>
   	<Route name="calendar" path="calendar" handler={Calendar}>
-  		<Route name="month" path="calendar/month" handler={Month}/>
+  		<Route name="month" handler={Month}/>
   		<DefaultRoute name="week" handler={Week}/>
   	</Route>
     <Route name="event" path="event/:id" handler={Event}/>

@@ -5,6 +5,7 @@ import { createStore, mergeIntoBag, isInBag } from '../utils/StoreUtils';
 import AppConstants from '../constants/AppConstants';
 
 let _now = new Date();
+let _currentWeekStart = CalendarUtils.getWeekStartForDay(_now);
 let _currentDate = _now.getDate();
 let _currentHour = _now.getHours();
 let _view = 'week';
@@ -22,15 +23,7 @@ const CalendarStore = createStore({
   getView() {
     return {
       type: _view,
-      days: (_view == 'week') ? CalendarStore.getWeekForDate() : null
-    }
-  },
-
-  getCurrentDateObj(){
-    return {
-      now: _now,
-      currentDate: _currentDate,
-      currentHour: _currentHour
+      days: (_view == 'week') ? CalendarStore.getWeekForDate(_currentWeekStart) : null
     }
   },
 
@@ -38,8 +31,8 @@ const CalendarStore = createStore({
     return CalendarUtils.getDaysInMonth(month, year);
   },
 
-  getWeekForDate(){
-    return CalendarUtils.getWeekForDate(_now);
+  getWeekForDate(date){
+    return CalendarUtils.getWeekForDate(date);
   },
 
   getFirstDay(month, year){
@@ -70,6 +63,15 @@ CalendarStore.dispatchToken = AppDispatcher.register(action => {
 
   switch(action.type) {
 
+    case AppConstants.PREVIOUS_WEEK:
+        _currentWeekStart = new Date(_currentWeekStart.setDate(_currentWeekStart.getDate()-7));
+        CalendarStore.emitChange();
+    break;
+
+    case AppConstants.NEXT_WEEK:
+        _currentWeekStart = new Date(_currentWeekStart.setDate(_currentWeekStart.getDate()+7));
+        CalendarStore.emitChange();
+    break;    
 
     case AppConstants.START_DATE_TICK:
       _tickInterval = setInterval(CalendarStore.dateTick, _intervalTime);

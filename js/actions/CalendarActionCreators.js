@@ -30,6 +30,14 @@ export function hideEventPopup(events){
 	AppDispatcher.dispatch(AppConstants.HIDE_EVENT_POPUP);
 }
 
+export function previousWeek(){
+	AppDispatcher.dispatch(AppConstants.PREVIOUS_WEEK);
+}
+
+export function nextWeek(){
+	AppDispatcher.dispatch(AppConstants.NEXT_WEEK);
+}
+
 /*
 	Event Page Actions
 */

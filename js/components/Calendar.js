@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteHandler, Link } from 'react-router';
+import CalendarNav from './CalendarNav';
 import CalendarUtils from '../utils/CalendarUtils';
 import CalendarStore from '../stores/CalendarStore';
 import connectToStores from '../utils/connectToStores';
@@ -29,6 +30,7 @@ export default class Calendar extends React.Component{
   render() {
     return (
       <div className="calendar">
+        <CalendarNav days={this.props.view.days} />
       	<RouteHandler 
       		view={this.props.view} />
       </div>

@@ -8,5 +8,7 @@ export default keyMirror({
   EDIT_EVENT: null,
   SAVE_EVENT: null,
   DELETE_EVENT: null,
-  RECIEVE_EVENTS: null
+  RECIEVE_EVENTS: null,
+  PREVIOUS_WEEK: null,
+  NEXT_WEEK: null
 })
