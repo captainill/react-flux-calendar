@@ -1,14 +1,23 @@
 import React from 'react';
 import Popup from './Popup';
 import * as CalendarActionCreators from '../actions/CalendarActionCreators';
+import RouterContainer from '../utils/RouterContainer';
 
 export default class PopupEdit extends Popup{
 
   constructor(props){
     super(props);
-
-    this.onClickDeleteHanlder = this.onClickDeleteHanlder.bind(this);
   }
+
+  componentDidMount(){
+    React.findDOMNode(this.refs.popDelete).addEventListener('click', this.onClickDeleteHandler.bind(this));
+    React.findDOMNode(this.refs.popEdit).addEventListener('click', this.onClickEditHandler.bind(this));
+  } 
+
+  componentWillUnmount(){
+    React.findDOMNode(this.refs.popDelete).removeEventListener('click', this.onClickDeleteHandler.bind(this));  
+    React.findDOMNode(this.refs.popEdit).addEventListener('click', this.onClickEditHandler.bind(this));  
+  }   
 
   renderForm(){
     const when = (this.props.popupEvent) ? this.props.popupEvent.when : '';
@@ -23,14 +32,21 @@ export default class PopupEdit extends Popup{
           <span clasName="pop-event-details">{ when }</span>
         </div>
         <div>
-          <input type="submit" value="Edit Event" onClick={this.onClickEditHanlder} />
-          <a href="#" className="pop-edit" onClick={this.onClickDeleteHanlder}>Delete event »</a>
+          <input type="submit" value="Edit Event" ref="popEdit" />
+          <a href="#" className="pop-edit" ref="popDelete">Delete event »</a>
         </div>
       </form>
     )
   } 
 
-  onClickDeleteHanlder(e){
+  onClickEditHandler(e){
+    CalendarActionCreators.editEventPopup();
+    RouterContainer.get().transitionTo('event', {id: this.props.popupEvent.id})
+
+    e.preventDefault();
+  }
+
+  onClickDeleteHandler(e){
     CalendarActionCreators.deleteEventPopup({
       id: this.props.popupEvent.id
     });

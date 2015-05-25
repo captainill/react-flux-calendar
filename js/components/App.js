@@ -5,6 +5,7 @@ import PopupEdit from './PopupEdit';
 import PopupStore from '../stores/PopupStore';
 import EventStore from '../stores/EventStore';
 import connectToStores from '../utils/connectToStores';
+import * as CalendarActionCreators from '../actions/CalendarActionCreators';
 
 /**
  * Retrieves state from stores for current props.
@@ -32,6 +33,16 @@ const stores = [PopupStore];
 
 export default class App extends React.Component{
 
+  constructor(props){
+    super(props);
+
+    this.onHtmlClick = this.onHtmlClick.bind(this);
+  }
+
+  componentDidMount(){
+    document.getElementsByTagName('html')[0].addEventListener('click', this.onHtmlClick);
+  }
+
   render() {
     const Popup = (this.props.popUpMode == 'create') ? PopupCreate : PopupEdit;
     return (
@@ -41,5 +52,12 @@ export default class App extends React.Component{
       </div>
     );
   }
+
+  onHtmlClick(){
+    if(!this.props.isPopupShowing)
+      return;
+    
+    CalendarActionCreators.hideEventPopup();
+  }  
 
 };

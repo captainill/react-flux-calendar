@@ -26,6 +26,10 @@ export function addAllEvents(events){
 	AppDispatcher.dispatch(AppConstants.RECIEVE_EVENTS, events);
 }
 
+export function hideEventPopup(events){
+	AppDispatcher.dispatch(AppConstants.HIDE_EVENT_POPUP);
+}
+
 /*
 	Event Page Actions
 */
