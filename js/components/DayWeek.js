@@ -9,8 +9,6 @@ function getState(props) {
   const serialDateNum = CalendarUtils.generateSerialForDate(props.date);
   const events = EventStore.getEventsForSerialDate(serialDateNum);
 
-  console.log('events for serial', events);
-
   return {
     events
   }
@@ -29,7 +27,13 @@ export default class DayWeek extends React.Component{
 	renderHours(){
 		let cells = [];
 		for(let i = 0; i < 24; i++){
-			cells.push(<HourCell hour={i} addEvent={this.addEvent} />);
+      let hourEvent;
+      this.props.events.forEach((event) => {
+        if(event.hour == i){
+          hourEvent = event;
+        }
+      })
+			cells.push(<HourCell hour={i} event={hourEvent} addEvent={this.addEvent} />);
 		}
 		return cells;
 	}
