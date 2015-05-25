@@ -6,19 +6,16 @@ import * as TimerUtils from '../utils/TimerUtils';
 //import selectn from 'selectn';
 import AppConstants from '../constants/AppConstants';
 
-let _position = {
-  top: 0,
-  left: 0
-};
-let _isPopupShowing = false;
-let _event = {
-  mode: 'create'
-};
+let _position;
+let _isPopupShowing;
+let _event;
 
 function _resestPopup(){
+  _position = { top: 0, left: 0};  
   _isPopupShowing = false;
-  _event = null;  
+  _event = { mode: 'create' };
 }
+_resestPopup();
 
 const PopupStore = createStore({
 
