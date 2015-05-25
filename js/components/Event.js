@@ -22,7 +22,7 @@ const stores = [EventStore];
 @connectToStores(stores, getState)
 
 export default class Event extends React.Component{
-  
+
   componentDidMount(){
     React.findDOMNode(this.refs.detailsInput).focus();
   }
@@ -30,6 +30,7 @@ export default class Event extends React.Component{
   render() {
     return (
       <div className="event-wrap">
+        <div className="back-link"><Link to="calendar">«back</Link></div>
         <input ref="detailsInput" type="text" defaultValue={this.props.event.details}/>
         <p>When: {this.props.event.when}</p>
       </div>
