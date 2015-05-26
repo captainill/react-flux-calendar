@@ -9,13 +9,9 @@ From the root project directory run these commands from the command line:
 
 This will install all dependencies.
 
-To build the project, first run this command:
+To run the server and build project (webpack will watch for changees -w), run this command:
 
-`webpack -w`
-
-To run the server:
-
-`node server.js`
+`npm start`
 
 And navigate to http://localhost:3000
 

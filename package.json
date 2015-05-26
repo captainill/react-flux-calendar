@@ -35,9 +35,10 @@
     "webpack": "^1.9.6"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js & webpack -w",
     "build": "./node_modules/.bin/webpack --config webpack.config.production.js",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint .",
+    "postinstall": "./node_modules/.bin/webpack --config webpack.config.production.js"
   },
   "jest": {
     "rootDir": "./js"
