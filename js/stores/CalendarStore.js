@@ -29,6 +29,7 @@ const CalendarStore = createStore({
   },
 
   getWeekForDate(date){
+    //getWeekForCurrentDate
     return CalendarUtils.getWeekForDate(date);
   },
 
@@ -53,7 +54,9 @@ CalendarStore.dispatchToken = AppDispatcher.register(action => {
     break;
 
     case AppConstants.NEXT_WEEK:
+        console.log(_currentWeekStart)
         _currentWeekStart = new Date(_currentWeekStart.setDate(_currentWeekStart.getDate()+7));
+        console.log(_currentWeekStart)
         CalendarStore.emitChange();
     break;
 

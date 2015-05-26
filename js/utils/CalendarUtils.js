@@ -34,14 +34,28 @@ const CalendarUtils = {
     }
   },
 
-  //returns the index of the first day of the week that falls in the given month
-  //ex returns 5 when given May/2015 because May 1 is a Friday
+  /*
+    Takes Month: Number, Year: Number
+    Returns Number: The index of the first day of the week that falls in the given month
+    ex. 5 when given May/2015 because May 1 is a Friday 
+  */
   getFirstDay(month, year){
     const firstDayDate = new Date(year, month, 1);
     return firstDayDate.getDay();
   },
 
-  //returns the first day of the week for a given day
+  /*
+    Get week starting with an arbitrary date.
+    Return Array: the week of days
+  */
+  getWeekForCurrentDate(date){
+    var start = getWeekStartForDay(date);
+    return getWeekForDate(start);
+  },
+
+  /*
+    Return Date: The start of a week from an arbtrary day
+  */
   getWeekStartForDay(date){
     const dayOfMonth = date.getDate();
     const dayOfWeek = date.getDay();
@@ -52,23 +66,24 @@ const CalendarUtils = {
     return startDate;
   },
 
+  /*
+    Takes Date: first day of a week
+    Returns Array: The week of Date Objs
+  */
   getWeekForDate(dateProp){
     let date = dateProp;
     let array = [];
     //test first day of month
     /*date = new Date(2015, 4, 1);
-    console.log('test day=', date.toString());
-    console.log('--------');*/
+    console.log('test day=', date.toString());*/
 
     if(!date){
       date = new Date();
     }
 
-    const start = this.getWeekStartForDay(date);
-
     for (let i = 0; i < _daysInWeek; i++) {
-      const day = new Date(start)
-      day.setDate(start.getDate()+i);
+      const day = new Date(date)
+      day.setDate(date.getDate()+i);
       array.push(day);
     }
 

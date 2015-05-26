@@ -24,7 +24,6 @@ const stores = [CalendarStore];
 export default class Calendar extends React.Component{
 
   render() {
-    console.log(this.props.view.days)
     return (
       <div className="calendar">
         <CalendarNav days={this.props.view.days} />
