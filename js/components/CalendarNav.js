@@ -12,12 +12,15 @@ export default class CalendarNav extends React.Component{
 	}
 
   render() {
+    let weekDateSummary = CalendarUtils.getWeekSummaryFromDates(this.props.days);
+
     return (
       <div className="calendar-nav">
         <ul>
         	<li><a href="#" onClick={this.previous}>Previous</a></li>
         	<li><a href="#" onClick={this.next}>Next</a></li>
         </ul>
+        <span className="calendar-nav-summary">{weekDateSummary}</span>
       </div>
     );
   }

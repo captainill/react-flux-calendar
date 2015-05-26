@@ -10,9 +10,6 @@ import CalendarUtils from '../utils/CalendarUtils';
 /*
 	Calendar Page Actions
 */
-export function startCalendar() {
-  AppDispatcher.dispatch(AppConstants.START_DATE_TICK);
-}
 
 export function showEventPopup(payload) {
   AppDispatcher.dispatch(AppConstants.SHOW_EVENT_POPUP, payload);

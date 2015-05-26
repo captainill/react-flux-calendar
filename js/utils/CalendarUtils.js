@@ -75,6 +75,21 @@ const CalendarUtils = {
     return array;
   },
 
+  /*
+    Takes an array representing a week of inidividual dates.
+    Return a summary String ex: May 24 – 30, 2015
+  */
+  getWeekSummaryFromDates(dates){
+    const first = dates[0];
+    const last = dates[dates.length-1];
+
+    if(first.getMonth() == last.getMonth()){
+      return _monthNames[first.getMonth()].slice(0, 3) + ' ' + first.getDate() + ' – ' + last.getDate() + ', ' + last.getFullYear();
+    } else{
+      return _monthNames[first.getMonth()].slice(0, 3) + ' ' + first.getDate() + ' – ' + _monthNames[last.getMonth()].slice(0, 3) + ' ' + last.getDate() + ', ' + last.getFullYear();
+    }
+  },
+
   //Prettify the date for Display in Popup/Event
   convertDateToWhen(dateProp){
     const day = _daysName[dateProp.getDay()].slice(0,3);

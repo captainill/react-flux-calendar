@@ -2,8 +2,16 @@
   margin: 0 40px 0 250px;
 
   .calendar-nav{
-    height: 24px;
+    height: 36px;
+    border-bottom: 1px solid $light-gray;
+    margin-bottom: 8px;
+
+    .calendar-nav-summary{
+      margin-left: 20px;
+    }
+
     ul{
+      display: inline-block;
       list-style-type: none;
       padding-left: 0;
       li{
