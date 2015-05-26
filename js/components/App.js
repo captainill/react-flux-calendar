@@ -47,8 +47,8 @@ export default class App extends React.Component{
     const Popup = (this.props.popUpMode == 'create') ? PopupCreate : PopupEdit;
     return (
       <div className="app-wrap">
-        <Popup {...this.props} />
-        <RouteHandler />
+        <Popup key={this.props.popupEvent.id} {...this.props} />
+        <RouteHandler/>
       </div>
     );
   }

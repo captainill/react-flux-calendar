@@ -13,11 +13,13 @@ export default class PopupEdit extends Popup{
   }
 
   componentDidMount(){
+    super.componentDidMount();
     React.findDOMNode(this.refs.popDelete).addEventListener('click', this.onClickDeleteHandler.bind(this));
     React.findDOMNode(this.refs.popEdit).addEventListener('click', this.onClickEditHandler.bind(this));
   } 
 
   componentWillUnmount(){
+    super.componentWillUnmount();
     React.findDOMNode(this.refs.popDelete).removeEventListener('click', this.onClickDeleteHandler.bind(this));  
     React.findDOMNode(this.refs.popEdit).addEventListener('click', this.onClickEditHandler.bind(this));  
   }   
@@ -26,11 +28,11 @@ export default class PopupEdit extends Popup{
     const when = (this.props.popupEvent) ? this.props.popupEvent.when : '';
     return (
       <form>
-        <div>
+        <div key={'what'+this.props.popupEvent.id}>
           <span clasName="pop-event-label">What: </span>
           <span clasName="pop-event-details">{this.props.popupEvent.details}</span>
         </div>      
-        <div>
+        <div key={'when'+this.props.popupEvent.id}>
           <span clasName="pop-event-label">When: </span>
           <span clasName="pop-event-details">{ when }</span>
         </div>

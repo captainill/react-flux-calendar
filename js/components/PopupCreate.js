@@ -10,10 +10,12 @@ export default class PopupCreate extends Popup{
 	}
 
   componentDidMount(){
+    super.componentDidMount();
     React.findDOMNode(this.refs.popSave).addEventListener('click', this.onClickSaveHandler.bind(this));
   } 
 
   componentWillUnmount(){
+    super.componentWillUnmount();
     React.findDOMNode(this.refs.popSave).removeEventListener('click', this.onClickSaveHandler.bind(this));
   }   
 

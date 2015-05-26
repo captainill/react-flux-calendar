@@ -7,9 +7,6 @@ export default class Popup extends React.Component{
 
 	constructor(props){
 		super(props);
-
-		this.onClosetHanlder = this.onClosetHandler.bind(this);
-		this.onPopupBodyClick = this.onPopupBodyClick.bind(this);
 	}
 
   componentDidMount(){
@@ -18,13 +15,13 @@ export default class Popup extends React.Component{
       to handling toggling popup when it loses focus, I need to handle the other clicks outside synthetic events 
       to assure the right order
     */
-    React.findDOMNode(this).addEventListener('click', this.onPopupBodyClick);
-    React.findDOMNode(this.refs.popClose).addEventListener('click', this.onClosetHandler);
+    React.findDOMNode(this).addEventListener('click', this.onPopupBodyClick.bind(this));
+    React.findDOMNode(this.refs.popClose).addEventListener('click', this.onClosetHandler.bind(this));
   }	
 
   componentWillUnmount(){
-    React.findDOMNode(this).removeEventListener('click', this.onPopupBodyClick);
-    React.findDOMNode(this.refs.popClose).removeEventListener('click', this.onClosetHandler);
+    React.findDOMNode(this).removeEventListener('click', this.onPopupBodyClick.bind(this));
+    React.findDOMNode(this.refs.popClose).removeEventListener('click', this.onClosetHandler.bind(this));
   } 
 
   /*shouldComponentUpdate(nextProps){
@@ -38,9 +35,11 @@ export default class Popup extends React.Component{
   	}
 
     return (
-      <div style={style} className={"popup "+ (this.props.isPopupShowing ? 'active' : '')} >
+      <div style={style} key={'pop_'+this.props.popupEvent.id} className={"popup "+ (this.props.isPopupShowing ? 'active' : '')} >
       	<div className="pop-content">
-	      	<a className="pop-close" ref="popClose" href="#">X</a>
+          <span>
+	      	  <a className="pop-close" ref="popClose" href="#">X</a>
+          </span>
 	      	{this.renderForm()}
 	        <div className="caret-down">
 	        	<span className="caret-border"></span>
