@@ -1,5 +1,6 @@
 import React from "react/addons";
 import { RouteHandler } from 'react-router';
+import Footer from './Footer';
 import PopupCreate from './PopupCreate';
 import PopupEdit from './PopupEdit';
 import PopupStore from '../stores/PopupStore';
@@ -49,6 +50,7 @@ export default class App extends React.Component{
       <div className="app-wrap">
         <Popup key={this.props.popupEvent.id} {...this.props} />
         <RouteHandler/>
+        <Footer/>
       </div>
     );
   }
