@@ -29,7 +29,6 @@ const CalendarStore = createStore({
   },
 
   getWeekForDate(date){
-    //getWeekForCurrentDate
     return CalendarUtils.getWeekForDate(date);
   },
 
