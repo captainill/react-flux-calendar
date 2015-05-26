@@ -21,3 +21,6 @@ update bundle.js with any changes you wish to make.
 After starting the watcher, you can open `index.html` in your browser to
 open the app.
 
+
+Demo is also on Heroku:
+[Live Demo](https://cryptic-island-9623.herokuapp.com/)
